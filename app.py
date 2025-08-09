@@ -132,7 +132,7 @@ if "edit_id" not in st.session_state:
 
 df = ler_gastos(conn)
 
-anos_disponiveis = sorted(df["ano"].unique()) if not df.empty else [2023, 2024, 2025]
+anos_disponiveis = sorted(df["ano"].unique()) if not df.empty else [2025]
 
 with st.form("form_gasto", clear_on_submit=True):
     if st.session_state.edit_id:
@@ -235,4 +235,5 @@ if not df.empty:
     df["AnoMes"] = df["ano"].astype(str) + "-" + df["mes"]
     graf_ano_mes = df.groupby("AnoMes")["valor"].sum()
     st.bar_chart(graf_ano_mes)
+
 
