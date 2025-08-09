@@ -173,7 +173,8 @@ with st.form("form_gasto", clear_on_submit=True):
             atualizar_gasto(conn, st.session_state.edit_id, ano, mes, despesa, categoria, valor, nota, observacao)
             st.success("✅ Gasto atualizado com sucesso!")
             st.session_state.edit_id = None
-        st.experimental_rerun()
+        st.rerun()
+
 
 st.subheader("📅 Gastos registrados")
 df = ler_gastos(conn)
@@ -234,3 +235,4 @@ if not df.empty:
     df["AnoMes"] = df["ano"].astype(str) + "-" + df["mes"]
     graf_ano_mes = df.groupby("AnoMes")["valor"].sum()
     st.bar_chart(graf_ano_mes)
+
